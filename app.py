@@ -21,13 +21,13 @@ def process_csv():
         dia = dfGiss['DIA'].astype(str).str.zfill(2)
         mes = dfGiss['MES_NUM'].astype(str).str.zfill(2)
         dfGiss['TOMA_CPF_CGC'] = dfGiss['TOMA_CPF_CGC'].astype(str).str.zfill(14)
-        dfGiss['ATIT_COD_ATIVIDADE'] = dfGiss['ATIT_COD_ATIVIDADE'].str.zfill(16).str.slice(0, 4)
+        dfGiss['ATIT_COD_ATIVIDADE'] = dfGiss['ATIT_COD_ATIVIDADE'].str.zfill(4).str.slice(0, 4)
         ano = dfGiss['ANO'].astype(str)
         dfGiss['DIA'] = dia + '/' + mes + '/' + ano + ' 00:00:00'
 
         dfGiss.rename(columns={'ENFS_NUM_NFS_INI': 'Nº NFS-e', 'DIA': 'Data Hora NFE',
                                'TOMA_CPF_CGC': 'CPF/CNPJ do Prestador', 'VALOR_FATURADO': 'Valor dos Serviços',
-                               'ATIT_COD_ATIVIDADE': 'Código do Serviço Prestado na Nota Fiscal',
+                               'ATIT_COD_ATIVIDADE': 'Codigo do Servico Prestado na Nota Fiscal',
                                'VALOR_ALIQUOTA': 'Alíquota', 'VALOR_IMPOSTO': 'ISS devido',
                                'TOMA_STA_ESTABELECIDO': 'ISS Retido'}, inplace=True)
 
@@ -79,7 +79,7 @@ def process_csv():
                         "UF do Prestador", "CEP do Prestador", "Email do Prestador", "Opção Pelo Simples",
                         "Situação da Nota Fiscal", "Data de Cancelamento", "Nº da Guia",
                         "Data de Quitação da Guia Vinculada a Nota Fiscal", "Valor dos Serviços", "Valor das Deduções",
-                        "Código do Serviço Prestado na Nota Fiscal", "Alíquota", "ISS devido", "Valor do Crédito",
+                        "Codigo do Servico Prestado na Nota Fiscal", "Alíquota", "ISS devido", "Valor do Crédito",
                         "ISS Retido", "Indicador de CPF/CNPJ do Tomador", "CPF/CNPJ do Tomador",
                         "Inscrição Municipal do Tomador", "Inscrição Estadual do Tomador", "Razão Social do Tomador",
                         "Tipo do Endereço do Tomador", "Endereço do Tomador", "Número do Endereço do Tomador",
@@ -142,9 +142,9 @@ combo_cliente_label.pack(pady=5)
 
 # options
 style_combobox = ttk.Style()
-style_combobox.configure("Custom.TCombobox", background="#FDD04C", foreground="#FF6D55", font=('Helvetica', 14, 'bold'))
+style_combobox.configure("Custom.TCombobox", background="#FDD04C", foreground="#FF6D55", font=('Helvetica', 18, 'bold'))
 # Criar a Combobox usando o estilo personalizado
-combo_cliente = ttk.Combobox(root, width=30, style='Custom.TCombobox')
+combo_cliente = ttk.Combobox(root, width=40, style='Custom.TCombobox')
 combo_cliente['values'] = list(clientes.keys())  # Define os valores da Combobox
 combo_cliente.pack(pady=5)
 
@@ -152,8 +152,8 @@ combo_cliente.pack(pady=5)
 style = ttk.Style()
 style.configure("TButton", background="#FDD04C", foreground="#FF6D55", width=20, height=5, font=('Helvetica', 14, 'bold'))
 style.map("TButton", background=[('active', 'white')], foreground=[('active', '#FDD04C')])
-botao = ttk.Button(root, text="Importar Planilha GISS", command=process_csv, style="TButton")
-botao.pack(pady=20)
+botao = ttk.Button(root, text="Selecionar Planilha", command=process_csv, style="TButton")
+botao.pack(pady=15)
 
 # Inicia o loop principal da janela
 root.mainloop()
