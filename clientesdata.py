@@ -1,7 +1,4 @@
 dados_clientes = {
-    "Cliente 1": {"cnpj": "21970251000179", "cidade": "São Bernardo do Campo"},
-    "Cliente 2": {"cnpj": "12345678000123", "cidade": "Rio de Janeiro"},
-    "Cliente 3": {"cnpj": "98765432000198", "cidade": "São Paulo"},
     "ACP EQUIP. IND. - 3": {"cnpj": "00411438000324", "cidade": "Diadema"},
     "ACP EQUIP. IND. ": {"cnpj": "00411438000162", "cidade": "Diadema"},
     "BLG COMERCIAL": {"cnpj": "21970251000179", "cidade": "São Bernardo do Campo"},

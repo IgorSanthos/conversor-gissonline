@@ -1,6 +1,6 @@
 import pandas as pd
 import tkinter as tk
-from tkinter import filedialog, messagebox, simpledialog, ttk
+from tkinter import filedialog, messagebox, ttk
 from PIL import Image, ImageTk
 from clientesdata import dados_clientes
 from imagem import texto_longo
