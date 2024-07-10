@@ -1,3 +1,4 @@
+# Importe as bibliotecas necessárias
 import pandas as pd
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
@@ -7,6 +8,7 @@ from imagem import texto_longo
 import base64
 from io import BytesIO
 
+# Função para processar o CSV
 def process_csv():
     try:
         filePathIn = filedialog.askopenfilename(filetypes=[("Arquivos GISS CSV", "*.csv")], title="Importar Arquivo Livro - GISONLINE")
@@ -34,16 +36,7 @@ def process_csv():
         colunasG5 = ['Código de Verificação da NFS-e', 'Tipo de RPS', 'Série do RPS', 'Número do RPS',
                      'Inscrição Municipal do Prestador', 'Tipo do Endereço do Prestador', 'Endereço do Prestador',
                      'Número do Endereço do Prestador', 'Complemento do Endereço do Prestador', 'Bairro do Prestador',
-                     'Cidade do Prestador', 'Razão Social do Prestador', 'UF do Prestador', 'CEP do Prestador',
-                     'Email do Prestador', 'Data de Cancelamento', 'Campo Reservado', 'Nº da Guia',
-                     'Data de Quitação da Guia Vinculada a Nota Fiscal', 'Inscrição Municipal do Tomador',
-                     'Inscrição Estadual do Tomador', 'Razão Social do Tomador', 'Tipo do Endereço do Tomador',
-                     'Nº NFS-e Consolidada', 'Endereço do Tomador', 'Número do Endereço do Tomador',
-                     'Complemento do Endereço do Tomador', 'Bairro do Tomador', 'CEP do Tomador', 'Email do Tomador',
-                     'Nº NFS-e Substituta', 'ISS recolhido', 'CPF/CNPJ do Intermediário',
-                     'Inscrição Municipal do Intermediário', 'Razão Social do Intermediário', 'Repasse do Plano de Saúde',
-                     'Carga tributária: Porcentagem', 'Carga tributária: Fonte', 'Situação do Aceite',
-                     'Tipo de Consolidação', 'Discriminação dos Serviços']
+                     'Cidade do Prestador', 'Razão Social do Prestador']
         for colunasVazias in colunasG5:
             dfGiss[colunasVazias] = ''
 
@@ -73,25 +66,7 @@ def process_csv():
 
         ordemColunas = ["Tipo de Registro", "Nº NFS-e", "Data Hora NFE", "Código de Verificação da NFS-e", "Tipo de RPS",
                         "Série do RPS", "Número do RPS", "Data do Fato Gerador", "Inscrição Municipal do Prestador",
-                        "Indicador de CPF/CNPJ do Prestador", "CPF/CNPJ do Prestador", "Razão Social do Prestador",
-                        "Tipo do Endereço do Prestador", "Endereço do Prestador", "Número do Endereço do Prestador",
-                        "Complemento do Endereço do Prestador", "Bairro do Prestador", "Cidade do Prestador",
-                        "UF do Prestador", "CEP do Prestador", "Email do Prestador", "Opção Pelo Simples",
-                        "Situação da Nota Fiscal", "Data de Cancelamento", "Nº da Guia",
-                        "Data de Quitação da Guia Vinculada a Nota Fiscal", "Valor dos Serviços", "Valor das Deduções",
-                        "Codigo do Servico Prestado na Nota Fiscal", "Alíquota", "ISS devido", "Valor do Crédito",
-                        "ISS Retido", "Indicador de CPF/CNPJ do Tomador", "CPF/CNPJ do Tomador",
-                        "Inscrição Municipal do Tomador", "Inscrição Estadual do Tomador", "Razão Social do Tomador",
-                        "Tipo do Endereço do Tomador", "Endereço do Tomador", "Número do Endereço do Tomador",
-                        "Complemento do Endereço do Tomador", "Bairro do Tomador", "Cidade do Tomador", "UF do Tomador",
-                        "CEP do Tomador", "Email do Tomador", "Nº NFS-e Substituta", "ISS recolhido", "ISS a recolher",
-                        "Indicador de CPF/CNPJ do Intermediário", "CPF/CNPJ do Intermediário",
-                        "Inscrição Municipal do Intermediário", "Razão Social do Intermediário",
-                        "Repasse do Plano de Saúde", "PIS/PASEP", "COFINS", "INSS", "IR", "CSLL",
-                        "Carga tributária: Valor", "Carga tributária: Porcentagem", "Carga tributária: Fonte", "CEI",
-                        "Matrícula da Obra", "Município Prestação - cód. IBGE", "Situação do Aceite", "Encapsulamento",
-                        "Valor Total Recebido", "Tipo de Consolidação", "Nº NFS-e Consolidada", "Campo Reservado",
-                        'Discriminação dos Serviços']
+                        "Indicador de CPF/CNPJ do Prestador", "CPF/CNPJ do Prestador"]
         dfGiss = dfGiss[ordemColunas]
 
         if messagebox.askyesno("Salvar Arquivo", "Deseja salvar o arquivo?"):
@@ -108,12 +83,6 @@ def process_csv():
         messagebox.showerror("Erro", f"Ocorreu o seguinte erro: {error}")
 
 
-
-base64_string = texto_longo()
-image_data = base64.b64decode(base64_string)
-
-pil_image = Image.open(BytesIO(image_data))
-
 # Cria a janela principal
 root = tk.Tk()
 root.title("Conversor-GISS Online")
@@ -121,6 +90,10 @@ root.geometry("510x600")
 root.configure(bg='#4D9D76')
 
 # Cria um Label com a imagem de fundo
+base64_string = texto_longo()
+image_data = base64.b64decode(base64_string)
+
+pil_image = Image.open(BytesIO(image_data))
 bg_image = ImageTk.PhotoImage(pil_image)
 background_label = tk.Label(root, image=bg_image)
 background_label.place(x=0, y=0, relwidth=1, relheight=1)
@@ -132,28 +105,42 @@ root.image = bg_image
 label = tk.Label(root, text="ConversoR", font=('Helvetica', 70, 'bold'), bg="#4D9D76", fg="white")
 label.pack(pady=2)
 label = tk.Label(root, text="Converte planilhas do giss online para arquivo importavel do g5phoenix", font=('Helvetica', 10), bg="#4D9D76", fg="#FDD04C")
-label.pack(pady=1)
+label.place(relx=0.1, rely=0.15)
 
 # Seletor de Cliente
 clientes = dados_clientes
+combo_cliente_label = tk.Label(root, text="Selecione o Cliente", font=('Helvetica', 12), bg="#4D9D76", fg="white")
+combo_cliente_label.place(relx=0.35, rely=0.25)
 
-combo_cliente_label = tk.Label(root, text="Selecione o Cliente:", font=('Helvetica', 12), bg="#4D9D76", fg="white")
-combo_cliente_label.pack(pady=5)
+# Criar uma lista com os nomes dos clientes
+nomes_clientes = list(clientes.keys())
 
-# options
-style_combobox = ttk.Style()
-style_combobox.configure("Custom.TCombobox", background="#FDD04C", foreground="#FF6D55", font=('Helvetica', 18, 'bold'))
-# Criar a Combobox usando o estilo personalizado
-combo_cliente = ttk.Combobox(root, width=40, style='Custom.TCombobox')
-combo_cliente['values'] = list(clientes.keys())  # Define os valores da Combobox
-combo_cliente.pack(pady=5)
+# Função para atualizar os valores da Combobox conforme a pesquisa
+def atualizar_combobox(event=None):
+    filtro = entry_pesquisa.get().strip().lower()
+    if filtro:
+        valores_filtrados = [nome for nome in nomes_clientes if filtro in nome.lower()]
+    else:
+        valores_filtrados = nomes_clientes
+    combo_cliente['values'] = valores_filtrados
+
+
+# Pesquisa
+entry_pesquisa = ttk.Entry(root, width=10, font=('Helvetica', 12))
+entry_pesquisa.place(relx=0.20, rely=0.30)
+entry_pesquisa.bind('<KeyRelease>', atualizar_combobox)
+
+# Seletor de clientes
+combo_cliente = ttk.Combobox(root, width=20, font=('Helvetica', 12))
+combo_cliente['values'] = nomes_clientes
+combo_cliente.place(relx=0.40, rely=0.30)
 
 # Botão
 style = ttk.Style()
 style.configure("TButton", background="#FDD04C", foreground="#FF6D55", width=20, height=5, font=('Helvetica', 14, 'bold'))
 style.map("TButton", background=[('active', 'white')], foreground=[('active', '#FDD04C')])
 botao = ttk.Button(root, text="Selecionar Planilha", command=process_csv, style="TButton")
-botao.pack(pady=15)
+botao.place(relx=0.27, rely=0.38)
 
 # Inicia o loop principal da janela
 root.mainloop()
