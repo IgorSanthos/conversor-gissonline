@@ -29,14 +29,23 @@ def process_csv():
 
         dfGiss.rename(columns={'ENFS_NUM_NFS_INI': 'Nº NFS-e', 'DIA': 'Data Hora NFE',
                                'TOMA_CPF_CGC': 'CPF/CNPJ do Prestador', 'VALOR_FATURADO': 'Valor dos Serviços',
-                               'ATIT_COD_ATIVIDADE': 'Codigo do Servico Prestado na Nota Fiscal',
+                               'ATIT_COD_ATIVIDADE': 'Codigo do Serviço Prestado na Nota Fiscal',
                                'VALOR_ALIQUOTA': 'Alíquota', 'VALOR_IMPOSTO': 'ISS devido',
                                'TOMA_STA_ESTABELECIDO': 'ISS Retido'}, inplace=True)
 
         colunasG5 = ['Código de Verificação da NFS-e', 'Tipo de RPS', 'Série do RPS', 'Número do RPS',
                      'Inscrição Municipal do Prestador', 'Tipo do Endereço do Prestador', 'Endereço do Prestador',
                      'Número do Endereço do Prestador', 'Complemento do Endereço do Prestador', 'Bairro do Prestador',
-                     'Cidade do Prestador', 'Razão Social do Prestador']
+                     'Cidade do Prestador', 'Razão Social do Prestador', 'UF do Prestador', 'CEP do Prestador',
+                     'Email do Prestador', 'Data de Cancelamento', 'Campo Reservado', 'Nº da Guia',
+                     'Data de Quitação da Guia Vinculada a Nota Fiscal', 'Inscrição Municipal do Tomador',
+                     'Inscrição Estadual do Tomador', 'Razão Social do Tomador', 'Tipo do Endereço do Tomador',
+                     'Nº NFS-e Consolidada', 'Endereço do Tomador', 'Número do Endereço do Tomador',
+                     'Complemento do Endereço do Tomador', 'Bairro do Tomador', 'CEP do Tomador', 'Email do Tomador',
+                     'Nº NFS-e Substituta', 'ISS recolhido', 'CPF/CNPJ do Intermediário',
+                     'Inscrição Municipal do Intermediário', 'Razão Social do Intermediário', 'Repasse do Plano de Saúde',
+                     'Carga tributária: Porcentagem', 'Carga tributária: Fonte', 'Situação do Aceite',
+                     'Tipo de Consolidação', 'Discriminação dos Serviços']
         for colunasVazias in colunasG5:
             dfGiss[colunasVazias] = ''
 
@@ -66,7 +75,25 @@ def process_csv():
 
         ordemColunas = ["Tipo de Registro", "Nº NFS-e", "Data Hora NFE", "Código de Verificação da NFS-e", "Tipo de RPS",
                         "Série do RPS", "Número do RPS", "Data do Fato Gerador", "Inscrição Municipal do Prestador",
-                        "Indicador de CPF/CNPJ do Prestador", "CPF/CNPJ do Prestador"]
+                        "Indicador de CPF/CNPJ do Prestador", "CPF/CNPJ do Prestador", "Razão Social do Prestador",
+                        "Tipo do Endereço do Prestador", "Endereço do Prestador", "Número do Endereço do Prestador",
+                        "Complemento do Endereço do Prestador", "Bairro do Prestador", "Cidade do Prestador",
+                        "UF do Prestador", "CEP do Prestador", "Email do Prestador", "Opção Pelo Simples",
+                        "Situação da Nota Fiscal", "Data de Cancelamento", "Nº da Guia",
+                        "Data de Quitação da Guia Vinculada a Nota Fiscal", "Valor dos Serviços", "Valor das Deduções",
+                        "Codigo do Serviço Prestado na Nota Fiscal", "Alíquota", "ISS devido", "Valor do Crédito",
+                        "ISS Retido", "Indicador de CPF/CNPJ do Tomador", "CPF/CNPJ do Tomador",
+                        "Inscrição Municipal do Tomador", "Inscrição Estadual do Tomador", "Razão Social do Tomador",
+                        "Tipo do Endereço do Tomador", "Endereço do Tomador", "Número do Endereço do Tomador",
+                        "Complemento do Endereço do Tomador", "Bairro do Tomador", "Cidade do Tomador", "UF do Tomador",
+                        "CEP do Tomador", "Email do Tomador", "Nº NFS-e Substituta", "ISS recolhido", "ISS a recolher",
+                        "Indicador de CPF/CNPJ do Intermediário", "CPF/CNPJ do Intermediário",
+                        "Inscrição Municipal do Intermediário", "Razão Social do Intermediário",
+                        "Repasse do Plano de Saúde", "PIS/PASEP", "COFINS", "INSS", "IR", "CSLL",
+                        "Carga tributária: Valor", "Carga tributária: Porcentagem", "Carga tributária: Fonte", "CEI",
+                        "Matrícula da Obra", "Município Prestação - cód. IBGE", "Situação do Aceite", "Encapsulamento",
+                        "Valor Total Recebido", "Tipo de Consolidação", "Nº NFS-e Consolidada", "Campo Reservado",
+                        'Discriminação dos Serviços']
         dfGiss = dfGiss[ordemColunas]
 
         if messagebox.askyesno("Salvar Arquivo", "Deseja salvar o arquivo?"):

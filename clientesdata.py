@@ -1,5 +1,5 @@
-dados_clientes = {  "A C P EQUIPAMENTOS INDUSTRIAIS...": {"cnpj": "00411438000162", "cidade": "Diadema"},
-                    "ACP EQUIP. IND. - 3": {"cnpj": "00411438000324", "cidade": "Diadema"},
+dados_clientes = {  "ACP EQUIP. IND. - 001": {"cnpj": "00411438000162", "cidade": "Diadema"},
+                    "ACP EQUIP. IND. - 003": {"cnpj": "00411438000324", "cidade": "Diadema"},
                     "AD VALOR ADMINISTRAÇÃO LTDA": {"cnpj": "06332839000103", "cidade": "Diadema"},
                     "AGUAPLUS POCOS ARTESIANOS LTDA": {"cnpj": "17390750000110", "cidade": "Diadema"},
                     "AGUAPLUS SANEAMENTO E PROCESSO...": {"cnpj": "07040764000150", "cidade": "Diadema"},
